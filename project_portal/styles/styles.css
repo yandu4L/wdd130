@@ -210,7 +210,32 @@ footer a:hover {
 }
 
 
+main > div + div ul {
+    list-style: none;
+    padding: 0 22px 16px;
+    flex: 1;
+}
 
+main > div + div ul li {
+    margin-bottom: 8px;
+}
+
+main > div + div ul li a {
+    text-decoration: none;
+    color: #57534e;
+    font-size: 0.875rem;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+main > div + div ul li a::before {
+    content: '→ ';
+    color: #d4691e;
+}
+
+main > div + div ul li a:hover {
+    color: #d4691e;
+}
 
 @media (max-width: 960px) {
     main { grid-template-columns: repeat(2, 1fr); }
