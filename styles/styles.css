@@ -1,0 +1,248 @@
+@font-face {
+    font-family: SephHay;
+    src: url("../fonts/batmfa__.ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f3ee;
+    color: #1c1917;
+}
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 48px;
+    background: #fdfcf9;
+    border-bottom: 1.5px solid #e7e3db;
+}
+
+.logo {
+    height: 160px;
+    transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+    opacity: 0.75;
+}
+
+.navigation {
+    display: flex;
+    gap: 32px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #57534e;
+    font-size: 0.9rem;
+    position: relative;
+    transition: color 0.2s ease;
+    border-radius: 5%;
+}
+
+.navigation a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: #d4691e;
+    transition: width 0.25s ease;
+}
+
+.navigation a:hover {
+    color: #1c1917;
+    background-color: #a99687;
+    
+}
+
+.navigation a:hover::after {
+    width: 100%;
+}
+
+
+
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 52px 40px 80px;
+}
+
+
+main > div:first-child {
+    grid-column: 1 / -1;
+    margin-bottom: 16px;
+}
+
+main > div:first-child h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+main > div:first-child p {
+    color: #57534e;
+}
+
+main > div:first-child img {
+    display: none;
+}
+
+
+main > div + div {
+    background: #fdfcf9;
+    border: 1.5px solid #e7e3db;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+}
+
+main > div + div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    border-color: #d4b8a0;
+}
+
+main > div + div img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: #e7e3db;
+    transition: transform 0.35s ease;
+}
+
+main > div + div:hover img {
+    transform: scale(1.03);
+}
+
+main > div + div h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 20px 22px 8px;
+}
+
+main > div + div p {
+    font-size: 0.875rem;
+    color: #57534e;
+    line-height: 1.65;
+    padding: 0 22px 16px;
+    flex: 1;
+}
+
+main > div + div::after {
+    display: block;
+    padding: 0 22px 24px;
+    color: #d4691e;
+    font-size: 0.875rem;
+    transition: letter-spacing 0.2s ease;
+}
+
+main > div + div:hover::after {
+    letter-spacing: 0.02em;
+}
+
+
+
+footer {
+    background: #1c1917;
+    color: #a8a29e;
+    padding: 32px 48px;
+}
+
+.wrapper2 {
+    max-width: 1160px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+footer p {
+    font-size: 0.82rem;
+}
+
+footer a {
+    color: #a8a29e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #fdfcf9;
+}
+
+.social {
+    display: flex;
+    gap: 16px;
+}
+
+.social img {
+    width: 20px;
+    height: 20px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.social img:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+
+main > div + div ul {
+    list-style: none;
+    padding: 0 22px 16px;
+    flex: 1;
+}
+
+main > div + div ul li {
+    margin-bottom: 8px;
+}
+
+main > div + div ul li a {
+    text-decoration: none;
+    color: #57534e;
+    font-size: 0.875rem;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+main > div + div ul li a::before {
+    content: '→ ';
+    color: #d4691e;
+}
+
+main > div + div ul li a:hover {
+    color: #d4691e;
+}
+
+@media (max-width: 960px) {
+    main { grid-template-columns: repeat(2, 1fr); }
+    header { padding: 16px 24px; }
+}
+
+@media (max-width: 600px) {
+    main { grid-template-columns: 1fr; padding: 28px 16px; }
+    footer { padding: 24px 16px; }
+}
