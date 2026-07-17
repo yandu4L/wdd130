@@ -221,11 +221,18 @@
     border-radius:4px;
   }
 
+  .entry-actions{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    margin-top:18px;
+    flex-wrap:wrap;
+  }
+
   .entry-link{
     display:inline-flex;
     align-items:center;
     gap:6px;
-    margin-top:18px;
     font-family:var(--mono);
     font-size:13px;
     font-weight:500;
@@ -235,6 +242,22 @@
     padding-bottom:1px;
   }
   .entry-link:hover{ gap:10px; }
+
+  .report-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    color:var(--blue);
+    background:none;
+    border:none;
+    border-bottom:1.5px solid var(--blue);
+    padding:0 0 1px;
+    cursor:pointer;
+  }
+  .report-btn:hover{ gap:10px; }
 
   /* ---------- footer ---------- */
   footer{
@@ -265,6 +288,114 @@
   }
   footer a:hover{ color:var(--blue); border-color:var(--blue); }
 
+  /* ---------- report modal ---------- */
+  .overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(34,31,28,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    z-index:100;
+  }
+  .overlay.active{ display:flex; }
+
+  .report-card{
+    background:var(--paper-raised);
+    border:1.5px solid var(--ink);
+    border-radius:12px;
+    max-width:560px;
+    width:100%;
+    max-height:85vh;
+    overflow-y:auto;
+    position:relative;
+    box-shadow:6px 8px 0 rgba(34,31,28,0.18);
+  }
+
+  .report-header{
+    padding:26px 30px 18px;
+    border-bottom:2px dashed var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+  }
+
+  .report-eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.1em;
+    color:var(--rust);
+    text-transform:uppercase;
+  }
+
+  .report-title{
+    font-family:var(--display);
+    font-size:24px;
+    font-weight:700;
+    margin-top:6px;
+  }
+
+  .report-close{
+    font-family:var(--mono);
+    font-size:20px;
+    line-height:1;
+    background:none;
+    border:1.5px solid var(--ink);
+    border-radius:50%;
+    width:32px;
+    height:32px;
+    cursor:pointer;
+    flex-shrink:0;
+    color:var(--ink);
+  }
+  .report-close:hover{ background:var(--ink); color:var(--paper-raised); }
+
+  .report-body{
+    padding:22px 30px 30px;
+  }
+
+  .report-row{
+    margin-bottom:18px;
+  }
+  .report-row:last-child{ margin-bottom:0; }
+
+  .report-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+
+  .report-text{
+    font-size:14.5px;
+    line-height:1.65;
+    color:var(--ink);
+  }
+
+  .report-tags{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .report-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:6px;
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    color:var(--rust);
+    text-decoration:none;
+    border-bottom:1.5px solid var(--rust);
+    padding-bottom:1px;
+  }
+
   @media (max-width:560px){
     .ticket{ flex-direction:column; }
     .stub{ width:100%; flex-direction:row; align-items:center; }
@@ -272,6 +403,8 @@
     .perf::before{ top:-9px; left:-9px; }
     .perf::after{ top:-9px; right:-9px; left:auto; bottom:auto; }
     .header-right{ text-align:left; }
+    .report-header{ padding:22px 20px 16px; }
+    .report-body{ padding:18px 20px 24px; }
   }
 </style>
 </head>
@@ -293,7 +426,7 @@
   </header>
 
   <div class="section-label">
-    <span class="index">04</span>
+    <span class="index">03</span>
     <h2>Projects</h2>
   </div>
 
@@ -311,7 +444,10 @@
         <div class="entry-stack">
           <span class="chip">Football Page</span>
         </div>
-        <a class="entry-link" href="https://melonking11.github.io/wdd130-mnyandu/" target="_blank" rel="noopener">view project &rarr;</a>
+        <div class="entry-actions">
+          <a class="entry-link" href="https://melonking11.github.io/wdd130-mnyandu/" target="_blank" rel="noopener">view project &rarr;</a>
+          <button class="report-btn" data-report="report-1">view report &rarr;</button>
+        </div>
       </div>
     </div>
 
@@ -328,7 +464,10 @@
           <span class="chip">Bench Press</span>
           <span class="chip">Gym</span>
         </div>
-        <a class="entry-link" href="https://yandu4l.github.io/wdd130-hoover/" target="_blank" rel="noopener">view project &rarr;</a>
+        <div class="entry-actions">
+          <a class="entry-link" href="https://yandu4l.github.io/wdd130-hoover/" target="_blank" rel="noopener">view project &rarr;</a>
+          <button class="report-btn" data-report="report-2">view report &rarr;</button>
+        </div>
       </div>
     </div>
 
@@ -345,11 +484,12 @@
           <span class="chip">Kingdom Hearts</span>
           <span class="chip">Abilities page</span>
         </div>
-        <a class="entry-link" href="https://joshuatwhite.github.io/wdd130-olson/index.html" target="_blank" rel="noopener">view project &rarr;</a>
+        <div class="entry-actions">
+          <a class="entry-link" href="https://joshuatwhite.github.io/wdd130-olson/index.html" target="_blank" rel="noopener">view project &rarr;</a>
+          <button class="report-btn" data-report="report-3">view report &rarr;</button>
+        </div>
       </div>
     </div>
-
-    
 
   </div>
 
@@ -363,6 +503,118 @@
   </footer>
 
 </div>
+
+<!-- ---------- report modal (single reusable overlay) ---------- -->
+<div class="overlay" id="reportOverlay">
+  <div class="report-card">
+    <div class="report-header">
+      <div>
+        <div class="report-eyebrow" id="reportNum">Report</div>
+        <div class="report-title" id="reportTitle">Project</div>
+      </div>
+      <button class="report-close" id="reportClose" aria-label="Close report">&times;</button>
+    </div>
+    <div class="report-body">
+      <div class="report-row">
+        <div class="report-label">Role</div>
+        <div class="report-text" id="reportRole">[Role]</div>
+      </div>
+      <div class="report-row">
+        <div class="report-label">Overview</div>
+        <div class="report-text" id="reportOverview">[Overview]</div>
+      </div>
+      <div class="report-row">
+        <div class="report-label">What I did</div>
+        <div class="report-text" id="reportWork">[Details]</div>
+      </div>
+      <div class="report-row">
+        <div class="report-label">Tools</div>
+        <div class="report-tags" id="reportTags"></div>
+      </div>
+      <div class="report-row">
+        <a class="report-cta" id="reportLink" href="#" target="_blank" rel="noopener">open live project &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Each project's full report lives here, keyed by the id used in data-report.
+  // Fill in [PLACEHOLDER] fields with the real details for each project.
+  const reports = {
+    "report-1": {
+      num: "No. 001 — Client",
+      title: "Client Project",
+      role: "Client-facing developer — built the site to a client's spec",
+      overview: "A football-themed page built for a client, focused on clean layout and matching their brand direction.",
+      work: "As a client I gave my site plan and images for the developers to use.",
+      tools: ["HTML", "CSS"],
+      link: "https://melonking11.github.io/wdd130-mnyandu/"
+    },
+    "report-2": {
+      num: "No. 002 — Lead Dev",
+      title: "Lead Dev Project",
+      role: "Lead developer — took direction from the client and owned the build.",
+      overview: "A gym/bench-press themed site built from client instructions on structure and content.",
+      work: "For this website I was tasked to create a 3 pages based on banch-pressing. As lead dev i guided 2 of my junior devs and gave them instruction on what to make. I handled most of the HTML and they handled some CSS. My overall view of this project is that I did most of the work, which is fine, and I was easily able to handle most of what was asked of me in the site plan. I even went the extra mile and created an about page. ",
+      tools: ["HTML", "CSS", "JavaScript"],
+      link: "https://yandu4l.github.io/wdd130-hoover/"
+    },
+    "report-3": {
+      num: "No. 003 — Jnr Dev",
+      title: "Junior Developer",
+      role: "Junior developer — built one child page within a larger team site.",
+      overview: "A Kingdom Hearts fan page project; contributed the Abilities child page under direction from the lead.",
+      work: "I received instruction on what to do for the website from my lead developer. ",
+      tools: ["HTML", "CSS"],
+      link: "https://joshuatwhite.github.io/wdd130-olson/index.html"
+    }
+  };
+
+  const overlay = document.getElementById('reportOverlay');
+  const reportNum = document.getElementById('reportNum');
+  const reportTitle = document.getElementById('reportTitle');
+  const reportRole = document.getElementById('reportRole');
+  const reportOverview = document.getElementById('reportOverview');
+  const reportWork = document.getElementById('reportWork');
+  const reportTags = document.getElementById('reportTags');
+  const reportLink = document.getElementById('reportLink');
+  const reportClose = document.getElementById('reportClose');
+
+  document.querySelectorAll('.report-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const data = reports[btn.dataset.report];
+      if (!data) return;
+
+      reportNum.textContent = data.num;
+      reportTitle.textContent = data.title;
+      reportRole.textContent = data.role;
+      reportOverview.textContent = data.overview;
+      reportWork.textContent = data.work;
+      reportLink.href = data.link;
+
+      reportTags.innerHTML = "";
+      data.tools.forEach(tool => {
+        const span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = tool;
+        reportTags.appendChild(span);
+      });
+
+      overlay.classList.add('active');
+    });
+  });
+
+  function closeReport(){ overlay.classList.remove('active'); }
+
+  reportClose.addEventListener('click', closeReport);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeReport();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeReport();
+  });
+</script>
 
 </body>
 </html>
