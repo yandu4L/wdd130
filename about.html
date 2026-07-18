@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thami Mnyandu // about</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#eeeae1;
+    --paper-raised:#f7f4ec;
+    --ink:#221f1c;
+    --ink-soft:#847c6f;
+    --blue:#33507e;
+    --rust:#b5502f;
+    --line:#d8d2c3;
+    --display:'Space Grotesk', sans-serif;
+    --body:'Work Sans', sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    min-height:100vh;
+  }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:64px 24px 100px;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    display:flex;
+    gap:22px;
+    margin-bottom:36px;
+  }
+  nav a{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    text-decoration:none;
+    padding-bottom:3px;
+    border-bottom:1.5px solid transparent;
+  }
+  nav a.active{ color:var(--ink); border-color:var(--rust); }
+  nav a:hover{ color:var(--ink); border-color:var(--line); }
+
+  /* ---------- header ---------- */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:24px;
+    padding-bottom:32px;
+    border-bottom:3px solid var(--ink);
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.12em;
+    color:var(--blue);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+
+  h1{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px, 7vw, 64px);
+    line-height:0.95;
+    letter-spacing:-0.02em;
+  }
+  h1 .dot{ color:var(--rust); }
+
+  .subtitle{
+    max-width:520px;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--ink-soft);
+    margin-top:18px;
+  }
+
+  .header-right{
+    text-align:right;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+  .header-right b{ color:var(--ink); font-weight:500; }
+
+  /* ---------- section label ---------- */
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin:52px 0 26px;
+  }
+  .section-label .index{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--rust);
+  }
+  .section-label h2{
+    font-family:var(--display);
+    font-size:20px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--line);
+  }
+
+  /* ---------- passport card ---------- */
+  .passport{
+    display:flex;
+    gap:0;
+    background:var(--paper-raised);
+    border:1.5px solid var(--ink);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:4px 6px 0 rgba(34,31,28,0.12);
+  }
+
+  .passport-photo{
+    width:180px;
+    flex-shrink:0;
+    background:var(--blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:16px;
+  }
+  .photo-frame{
+    width:100%;
+    aspect-ratio:3/4;
+    background:rgba(247,244,236,0.12);
+    border:1.5px dashed rgba(247,244,236,0.5);
+    border-radius:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:var(--mono);
+    font-size:11px;
+    color:rgba(247,244,236,0.75);
+    text-align:center;
+    line-height:1.5;
+    padding:10px;
+  }
+
+  .passport-perf{
+    width:0;
+    border-left:2px dashed var(--ink);
+    position:relative;
+  }
+  .passport-perf::before, .passport-perf::after{
+    content:"";
+    position:absolute;
+    left:-9px;
+    width:16px;
+    height:16px;
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    border-radius:50%;
+  }
+  .passport-perf::before{ top:-9px; }
+  .passport-perf::after{ bottom:-9px; }
+
+  .passport-data{
+    flex:1;
+    padding:26px 30px;
+  }
+
+  .field-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .field-row:last-of-type{ border-bottom:none; }
+
+  .field-label{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-top:2px;
+  }
+  .field-value{
+    font-family:var(--body);
+    font-size:14.5px;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .field-value.mono{ font-family:var(--mono); font-size:13px; }
+
+  /* ---------- bio ---------- */
+  .bio{
+    margin-top:28px;
+    background:var(--paper-raised);
+    border:1.5px solid var(--ink);
+    border-radius:10px;
+    padding:28px 30px;
+  }
+  .bio p{
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink);
+    max-width:640px;
+  }
+  .bio p + p{ margin-top:14px; }
+
+  /* ---------- stamps grid (skills) ---------- */
+  .stamps{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+
+  .stamp-item{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    color:var(--blue);
+    border:2px solid var(--blue);
+    border-radius:6px;
+    padding:10px 16px;
+    transform:rotate(var(--r, -3deg));
+    background:rgba(51,80,126,0.05);
+  }
+  .stamp-item:nth-child(3n){ --r:2deg; color:var(--rust); border-color:var(--rust); background:rgba(181,80,47,0.05); }
+  .stamp-item:nth-child(3n+2){ --r:-4deg; }
+  .stamp-item:nth-child(4n){ --r:3deg; }
+
+  /* ---------- now list ---------- */
+  .now-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .now-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    background:var(--paper-raised);
+    border:1.5px solid var(--ink);
+    border-radius:8px;
+    padding:16px 20px;
+  }
+  .now-tag{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--paper-raised);
+    background:var(--ink);
+    padding:4px 10px;
+    border-radius:4px;
+    flex-shrink:0;
+    margin-top:2px;
+  }
+  .now-text{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--ink);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    margin-top:70px;
+    padding-top:24px;
+    border-top:3px solid var(--ink);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  footer .line{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  footer .links{
+    display:flex;
+    gap:20px;
+  }
+  footer a{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--ink);
+  }
+  footer a:hover{ color:var(--blue); border-color:var(--blue); }
+
+  @media (max-width:600px){
+    .passport{ flex-direction:column; }
+    .passport-photo{ width:100%; padding-bottom:0; }
+    .photo-frame{ max-width:160px; margin:0 auto; }
+    .passport-perf{ border-left:none; border-top:2px dashed var(--ink); width:100%; height:0; margin:20px 0 0; }
+    .passport-perf::before{ top:-9px; left:20px; }
+    .passport-perf::after{ top:-9px; right:20px; left:auto; bottom:auto; }
+    .field-row{ grid-template-columns:100px 1fr; }
+    .header-right{ text-align:left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <nav>
+    <a href="index.html">Projects</a>
+    <a href="about.html" class="active">About</a>
+  </nav>
+
+  <header>
+    <div>
+      <div class="eyebrow">Identification</div>
+      <h1>About Me<span class="dot">.</span></h1>
+      <p class="subtitle">A quick profile — who I am, what I'm building toward, and what I'm carrying with me along the way.</p>
+    </div>
+    <div class="header-right">
+      DOC TYPE &mdash; <b>Personal</b><br>
+      ISSUED &mdash; <b>2026</b><br>
+      STATUS &mdash; <b>Active</b>
+    </div>
+  </header>
+
+  <div class="section-label">
+    <span class="index">01</span>
+    <h2>Profile</h2>
+  </div>
+
+  <div class="passport">
+    <div class="passport-photo">
+      <div class="photo-frame">[PHOTO<br>HERE]</div>
+    </div>
+    <div class="passport-perf"></div>
+    <div class="passport-data">
+      <div class="field-row">
+        <div class="field-label">Name</div>
+        <div class="field-value">Thami Mnyandu</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Role</div>
+        <div class="field-value">Cybersecurity Student, Academic Skills Coach</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Based</div>
+        <div class="field-value">[Rexburg, ID]</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Studying</div>
+        <div class="field-value">[Cybersecurity — BYU-Idaho, Class of 2030]</div>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Contact</div>
+        <div class="field-value mono">mny26001@byui.edu</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <span class="index">02</span>
+    <h2>Bio</h2>
+  </div>
+
+  <div class="bio">
+    <p>I am a cybersecutity major. I like cars, music, movies, and fashion</p>
+    <p>Working on finishing college</p>
+  </div>
+
+  <div class="section-label">
+    <span class="index">03</span>
+    <h2>Stamps &mdash; skills &amp; tools</h2>
+  </div>
+
+  <div class="stamps">
+    <span class="stamp-item">[HTML]</span>
+    <span class="stamp-item">[CSS]</span>
+    <span class="stamp-item">[JavaScript]</span>
+    <span class="stamp-item">[SQL]</span>
+    <span class="stamp-item">[Python]</span>
+    <span class="stamp-item">[Firebase]</span>
+    <span class="stamp-item">[Git / GitHub]</span>
+    <span class="stamp-item">[Security Fundamentals]</span>
+  </div>
+
+  <div class="section-label">
+    <span class="index">04</span>
+    <h2>Currently</h2>
+  </div>
+
+  <div class="now-list">
+    <div class="now-item">
+      <span class="now-tag">Study</span>
+      <span class="now-text">Cybersecurity</span>
+    </div>
+    <div class="now-item">
+      <span class="now-tag">Build</span>
+      <span class="now-text">Group website projects</span>
+    </div>
+    <div class="now-item">
+      <span class="now-tag">Work</span>
+      <span class="now-text"></span>
+    </div>
+  </div>
+
+  <footer>
+    <span class="line">&copy; 2026 &mdash; built by hand</span>
+    <div class="links">
+      <a href="https://github.com/yandu4L" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/thamsanqa-mnyandu-184a41405/" target="_blank" rel="noopener">linkedin</a>
+      <a href="mailto:mny26001@byui.edu">email</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
